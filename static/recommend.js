@@ -67,6 +67,7 @@ function movie_recs(movie_title, movie_id, my_api_key) {
         url: "/similarity",
         data: { name: movie_title },
         success: function (recs) {
+            console.log(recs);
             if (
                 recs ==
                 "Sorry! The movie you requested is not in our database. Please check the spelling or try with some other movies"
@@ -86,7 +87,10 @@ function movie_recs(movie_title, movie_id, my_api_key) {
             }
         },
         error: function (xhr, status, error) {
+            console.log("error");
+            console.log(error);
             var err = eval("(" + xhr.responseText + ")");
+            console.log(err);
             alert(err.Message);
             $("#loader").delay(500).fadeOut();
         },
