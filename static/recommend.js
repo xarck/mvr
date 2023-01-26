@@ -67,6 +67,7 @@ function movie_recs(movie_title, movie_id, my_api_key) {
         url: "/similarity",
         data: { name: movie_title },
         success: function (recs) {
+            console.log(recs);
             if (
                 recs ==
                 "Sorry! The movie you requested is not in our database. Please check the spelling or try with some other movies"
@@ -85,9 +86,9 @@ function movie_recs(movie_title, movie_id, my_api_key) {
                 get_movie_details(movie_id, my_api_key, arr, movie_title);
             }
         },
-        error: function (xhr, status, error) {
-            var err = eval("(" + xhr.responseText + ")");
-            alert(err.Message);
+        error: function (err) {
+            console.log("error");
+            console.log(err);
             $("#loader").delay(500).fadeOut();
         },
     });
